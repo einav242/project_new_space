@@ -11,4 +11,5 @@ project_new_space is a server application built with FastAPI.<br /> It takes an 
 1. clone this repository
 2. Install the dependencies: pip install -r requirements.txt
 3.  run the following command in the terminal to start the server:<br />
-uvicorn server:app --reload
+```uvicorn server:app --host <server network address> --port 8080 --reload``` <br />
+**Note.** Verify that the phone and the server are connected to the same network (Wi-Fi, Ethernet, eg.)
