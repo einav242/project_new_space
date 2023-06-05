@@ -24,10 +24,24 @@ def world_coordinates(img_path: str) -> WCS:
     ast.api_key = 'xxsgfjptzhctedzp'
     # Perform plate solving using Astrometry.net
     solver = AstrometryNet()
-    #wcs_header = solver.solve_from_image(img_path, solve_timeout=1000, detect_threshold=3.0)
+    try_again = True
+    submission_id = None
+
+    while try_again:
+        try:
+            if not submission_id:
+                wcs_header = solver.solve_from_image(img_path,
+                                                  submission_id=submission_id, crpix_center=True)
+            else:
+                wcs_header = solver.monitor_submission(submission_id, solve_timeout=120)
+        except TimeoutError as e:
+            submission_id = e.args[1]
+        else:
+            # got a result, so terminate
+            try_again = False
     im1 = cv2.imread(img_path, cv2.IMREAD_GRAYSCALE)
     points = find_stars(im1, method="blob")
-    wcs_header = solver.solve_from_source_list(points[1][:, 0], points[1][:, 1], image_width=im1.shape[1], image_height=im1.shape[0], solve_timeout=120)
+    #wcs_header = solver.solve_from_source_list(points[1][:, 0], points[1][:, 1], image_width=im1.shape[1], image_height=im1.shape[0], solve_timeout=120)
     # Extract the WCS information from the header
     w = WCS(wcs_header)
     return w
