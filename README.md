@@ -1,6 +1,8 @@
 # project_new_space 
 ## The Server of StarTracker app
 project_new_space is a server application built with FastAPI.<br /> It takes an image path of stars, performs the algorithm on the image, and returns a list of star IDs, names, and coordinates.
+<img width="200" src="photo/צילום מסך 2023-06-05 133258.png">
+
 ## Algorithm:
 
 
