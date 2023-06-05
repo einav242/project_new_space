@@ -126,13 +126,3 @@ def plot_detected_stars(img, stars_data):
     plt.show()
 
 
-if __name__ == '__main__':
-    im1_path = "Ex1_test_101/fr1.jpg"
-    im1 = cv2.imread(im1_path, cv2.IMREAD_GRAYSCALE)
-    points1, im1_data = find_stars(im1)
-
-    im2_path = "Ex1_test_101/ST_db2.png"
-    im2 = cv2.imread(im2_path, cv2.IMREAD_GRAYSCALE)
-    points2, im2_data = find_stars(im2)
-
-    plot_detected_stars(im2, im2_data)

@@ -72,26 +72,6 @@ def get_stars_names(points: np.ndarray, world_coordinates_system: WCS) -> np.nda
             result.append("")
     return result
 
-def plot_star_name(img, points, names):
-    fig, ax = plt.subplots(ncols=1, figsize=(10, 10))
-    ax.imshow(im1, cmap='gray')
-    num = 1
-    for p in enumerate(points, 1):
-        x, y, r, b = points[num-1]
-        ax.text(x, y, f"{names[num-1]}", color='b', fontsize=8, horizontalalignment='left', verticalalignment='baseline')
-        ax.add_patch(plt.Circle((x, y), radius=r, edgecolor='r', facecolor='none'))
-        num +=1
-
-    plt.tight_layout()
-    plt.show()
-
-if __name__ == '__main__':
-    im1_path = "fr1.jpg"
-    im1 = cv2.imread(im1_path, cv2.IMREAD_GRAYSCALE)
-    points = find_stars(im1, method="blob")
-    plot_detected_stars(im1, points[1])
 
 
-    points_world_coordinates = world_coordinates(im1_path)
-    names = get_stars_names(points[0], points_world_coordinates)
-    plot_star_name(im1, points[1], names)
+

@@ -5,5 +5,3 @@ class AuthDetails(BaseModel):
     ImagePath: str
 
 
-class Access(BaseModel):
-    starsList: str
